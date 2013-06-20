@@ -1,0 +1,12 @@
+%li
+  %label{:name => 'redirect_model_slug'}
+    Redirect Model:
+  %select{:name => 'redirect_model_slug' }
+    {{#each content_types }}
+    %option{value: "{{ this.slug }}"}
+      {{ this.name }}
+    {{/each}}
+  %p.inline-hints
+    Please provide two fields the regular expression to match the url
+    and the url where it has to redirect to, it will use the first field
+    as the regular expression.
