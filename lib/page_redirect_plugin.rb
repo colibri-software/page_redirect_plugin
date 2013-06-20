@@ -40,7 +40,7 @@ module PageRedirectPlugin
           match = entry[rules.first['name']]
           redirect_url = entry[rules.last['name']]
           if controller.request.fullpath =~ /#{match}/
-            controller.redirect_to redirect_url
+            controller.redirect_to redirect_url and return
           end
         end
       end
