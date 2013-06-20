@@ -14,7 +14,7 @@ module PageRedirectPlugin
 
     protected
 
-    # redirect
+    # gets run before every page render
     def set_config
       ui_config = config
       set_model_sites
@@ -22,10 +22,12 @@ module PageRedirectPlugin
       redirect
     end
 
+    # gets the current site
     def get_site
       controller.send(:current_site)
     end
     
+    # sets the current site on the wrapper models for locomotive.
     def set_model_sites
       models = [Redirects]
       models.each { |model| model._site = get_site }
