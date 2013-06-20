@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 
   s.name        = 'page_redirect_plugin'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2013-04-24'
   s.summary     = "provides a easy way of redirecting"
   s.description = "provides a easy way of redirecting"
