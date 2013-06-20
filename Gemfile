@@ -6,4 +6,3 @@ gemspec
 gem 'cells'
 gem 'simple_form'
 gem 'simplecov', :require => false, :group => :test
-gem 'locomotive_model_wrapper'

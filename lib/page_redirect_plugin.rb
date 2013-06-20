@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'locomotive_plugins'
-require 'redirects'
 
 module PageRedirectPlugin
   class PageRedirectPlugin
@@ -16,9 +15,6 @@ module PageRedirectPlugin
 
     # gets run before every page render
     def set_config
-      ui_config = config
-      set_model_sites
-      Redirects._model_slug = config['redirect_model_slug']
       redirect
     end
 
@@ -26,23 +22,26 @@ module PageRedirectPlugin
     def get_site
       controller.send(:current_site)
     end
-    
-    # sets the current site on the wrapper models for locomotive.
-    def set_model_sites
-      models = [Redirects]
-      models.each { |model| model._site = get_site }
+
+    # gets the model and it needs for the redirects
+    def get_model(model_slug)
+      site = get_site
+      site.content_types.where(:slug => model_slug).first
     end
 
     # loops through all the redirect entries from the given model
     # and checks if the fullpath match the regex given and will
     # redirect to the given url.
     def redirect
-      Redirects.entries.each do |entry|
-        rules = entry.custom_fields_recipe['rules']
-        match = entry[rules.first['name']]
-        redirect_url = entry[rules.last['name']]
-        if controller.request.fullpath =~ /#{match}/
-          controller.redirect_to redirect_url
+      redirect_model = get_model(config['redirect_model_slug'])
+      if redirect_model
+        redirect_model.entries.each do |entry|
+          rules = entry.custom_fields_recipe['rules']
+          match = entry[rules.first['name']]
+          redirect_url = entry[rules.last['name']]
+          if controller.request.fullpath =~ /#{match}/
+            controller.redirect_to redirect_url
+          end
         end
       end
     end
