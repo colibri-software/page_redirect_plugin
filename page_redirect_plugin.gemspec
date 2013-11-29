@@ -1,7 +1,14 @@
+# -*- encoding: utf-8 -*-                                                       
+lib = File.expand_path('../lib/', __FILE__)                                     
+$:.unshift lib unless $:.include?(lib)                                          
+
+require 'page_redirect_plugin/version'
+
+
 Gem::Specification.new do |s|
 
   s.name        = 'page_redirect_plugin'
-  s.version     = '0.0.3'
+  s.version     = PageRedirectPlugin::VERSION
   s.date        = '2013-04-24'
   s.summary     = "provides a easy way of redirecting"
   s.description = "provides a easy way of redirecting"

@@ -40,6 +40,10 @@ module PageRedirectPlugin
           match = entry[rules.first['name']]
           redirect_url = entry[rules.last['name']]
           if controller.request.fullpath =~ /#{match}/
+            match_data = /#{match}/.match(controller.request.fullpath)
+            /#{match}/.named_captures.each do |key,value|
+              redirect_url.gsub!(/\$#{key}/, match_data[key])
+            end
             controller.redirect_to redirect_url and return
           end
         end
