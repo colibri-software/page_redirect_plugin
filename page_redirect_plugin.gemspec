@@ -1,6 +1,6 @@
-# -*- encoding: utf-8 -*-                                                       
-lib = File.expand_path('../lib/', __FILE__)                                     
-$:.unshift lib unless $:.include?(lib)                                          
+# -*- encoding: utf-8 -*-
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
 
 require 'page_redirect_plugin/version'
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.files       = Dir["{lib}/**/*"]
   s.homepage    = 'http://colibri-software.com'
   s.require_paths = ['lib']
-  s.add_dependency "locomotive_plugins", '~> 1.0.0.beta10'
+  s.add_dependency "locomotive_plugins", '~> 1.0.1'
   s.add_dependency "mongoid"
 
   s.add_development_dependency "rspec", '~> 2.12'
